@@ -53,16 +53,16 @@ export const ExpenseTracker = ({
   });
 
   return (
-    <Card className="border border-slate-200 dark:border-slate-800 shadow-sm mb-8">
+    <Card className="border border-slate-200 dark:border-slate-800 shadow-sm mb-6 sm:mb-8">
       {/* Top Controls & Search Bar */}
-      <CardHeader className="p-5 border-b border-slate-100 dark:border-slate-800/80">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <CardHeader className="p-3.5 sm:p-5 border-b border-slate-100 dark:border-slate-800/80">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <h3 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <ShoppingBag className="w-4 h-4 text-brand-600 dark:text-brand-400" />
               Itemized Expenses & Transaction Ledger
             </h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
+            <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">
               Track item purchases, pool deposits, and direct spends
             </p>
           </div>
@@ -72,31 +72,32 @@ export const ExpenseTracker = ({
             variant="primary"
             icon={Plus}
             onClick={onOpenAddTransaction}
+            className="hidden sm:inline-flex"
           >
             Add New Item / Expense
           </Button>
         </div>
 
         {/* Search & Filters */}
-        <div className="flex flex-col sm:flex-row items-center gap-3 mt-4 pt-3 border-t border-slate-100 dark:border-slate-800/60">
+        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-800/60">
           {/* Search Input */}
           <div className="relative flex-1 w-full">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               placeholder="Search items, gifts, notes..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/40 text-slate-900 dark:text-white"
+              className="w-full pl-8 pr-3 py-1.5 sm:py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/40 text-slate-900 dark:text-white"
             />
           </div>
 
           {/* Type Filter */}
-          <div className="flex items-center gap-2 w-full sm:w-auto">
+          <div className="flex items-center gap-1.5 w-full sm:w-auto">
             <select
               value={selectedType}
               onChange={(e) => setSelectedType(e.target.value)}
-              className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-700 dark:text-slate-200 focus:outline-none"
+              className="flex-1 sm:flex-none bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-2.5 py-1.5 text-xs text-slate-700 dark:text-slate-200 focus:outline-none"
             >
               <option value="all">All Types</option>
               <option value="pool_deposit">Pool Deposits</option>
@@ -108,7 +109,7 @@ export const ExpenseTracker = ({
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-700 dark:text-slate-200 focus:outline-none"
+              className="flex-1 sm:flex-none bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-2.5 py-1.5 text-xs text-slate-700 dark:text-slate-200 focus:outline-none"
             >
               <option value="all">All Categories</option>
               {CATEGORIES.map(c => (

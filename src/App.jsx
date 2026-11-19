@@ -25,6 +25,8 @@ import { TransactionModal } from './components/TransactionModal';
 import { ParticipantsModal } from './components/ParticipantsModal';
 import { EventListModal } from './components/EventListModal';
 import { SupabaseConfigModal } from './components/SupabaseConfigModal';
+import { ReportModal } from './components/ReportModal';
+import { MobileBottomNav } from './components/MobileBottomNav';
 
 import { dataService } from './services/dataService';
 import { calculateEventFinances } from './utils/settlementEngine';
@@ -42,6 +44,7 @@ export function App() {
   const [isParticipantsOpen, setIsParticipantsOpen] = useState(false);
   const [isEventListOpen, setIsEventListOpen] = useState(false);
   const [isSupabaseConfigOpen, setIsSupabaseConfigOpen] = useState(false);
+  const [isReportOpen, setIsReportOpen] = useState(false);
 
   // Initialize theme from system or localStorage
   useEffect(() => {
@@ -220,6 +223,7 @@ export function App() {
         onOpenNewEvent={() => setIsEventListOpen(true)}
         onOpenEventsList={() => setIsEventListOpen(true)}
         onOpenSupabaseConfig={() => setIsSupabaseConfigOpen(true)}
+        onOpenReport={() => setIsReportOpen(true)}
         isCloudConnected={isCloudConnected}
         isDarkMode={isDarkMode}
         onToggleDarkMode={toggleDarkMode}
@@ -228,7 +232,7 @@ export function App() {
 
       {/* Main Content Area */}
       {currentEvent ? (
-        <main className="flex-1 pb-16">
+        <main className="flex-1 pb-28 md:pb-16">
           
           {/* Event Header Banner & Tab Switcher */}
           <EventHeader
@@ -238,6 +242,7 @@ export function App() {
             onTabChange={setActiveTab}
             onOpenAddTransaction={() => setIsAddTxOpen(true)}
             onOpenParticipants={() => setIsParticipantsOpen(true)}
+            onOpenReport={() => setIsReportOpen(true)}
           />
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
@@ -323,6 +328,7 @@ export function App() {
                   participants={currentEvent.participants || []}
                   finances={finances}
                   currency={currentEvent.currency || 'INR'}
+                  onOpenReport={() => setIsReportOpen(true)}
                 />
               </motion.div>
             )}
@@ -411,6 +417,29 @@ export function App() {
           loadData();
         }}
       />
+
+      {/* PDF Financial Report Modal */}
+      <ReportModal
+        isOpen={isReportOpen}
+        onClose={() => setIsReportOpen(false)}
+        event={currentEvent}
+        participants={currentEvent?.participants || []}
+        transactions={currentEvent?.transactions || []}
+        finances={finances}
+        currency={currentEvent?.currency || 'INR'}
+      />
+
+      {/* Mobile Bottom Navigation & Quick Add Floating Button */}
+      {currentEvent && (
+        <MobileBottomNav
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
+          onOpenAddTransaction={() => setIsAddTxOpen(true)}
+          onOpenReport={() => setIsReportOpen(true)}
+          transactionCount={currentEvent?.transactions?.length || 0}
+          settlementCount={finances?.settlements?.length || 0}
+        />
+      )}
 
     </div>
   );

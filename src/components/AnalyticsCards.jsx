@@ -71,36 +71,36 @@ export const AnalyticsCards = ({ finances, currency = 'INR', onSwitchTab }) => {
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-8">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 mb-6">
       {cards.map((card, idx) => {
         const Icon = card.icon;
         return (
           <motion.div
             key={card.id}
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: idx * 0.05 }}
+            transition={{ duration: 0.25, delay: idx * 0.04 }}
           >
-            <Card className={`relative overflow-hidden border p-5 bg-gradient-to-br ${card.bgGlow} ${card.border} hover:shadow-lg transition-all`}>
-              <div className="flex items-start justify-between">
-                <div>
-                  <span className="text-[11px] font-bold tracking-wider uppercase text-slate-500 dark:text-slate-400">
+            <Card className={`relative overflow-hidden border p-3 sm:p-5 bg-gradient-to-br ${card.bgGlow} ${card.border} hover:shadow-md transition-all h-full flex flex-col justify-between`}>
+              <div className="flex items-start justify-between gap-1">
+                <div className="min-w-0">
+                  <span className="text-[10px] sm:text-[11px] font-bold tracking-wider uppercase text-slate-500 dark:text-slate-400 block truncate">
                     {card.title}
                   </span>
-                  <div className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mt-1 tracking-tight">
+                  <div className="text-base sm:text-2xl font-black text-slate-900 dark:text-white mt-0.5 sm:mt-1 tracking-tight truncate">
                     {formatCurrency(card.amount, currency)}
                   </div>
                 </div>
-                <div className="w-10 h-10 rounded-xl bg-white dark:bg-slate-800 shadow-sm flex items-center justify-center text-slate-800 dark:text-slate-200">
-                  <Icon className="w-5 h-5" />
+                <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-white dark:bg-slate-800 shadow-xs flex items-center justify-center text-slate-800 dark:text-slate-200 flex-shrink-0">
+                  <Icon className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
                 </div>
               </div>
 
-              <div className="mt-4 pt-3 border-t border-slate-200/60 dark:border-slate-800/60 flex items-center justify-between text-xs">
-                <span className="text-slate-500 dark:text-slate-400 font-medium truncate max-w-[180px]">
+              <div className="mt-2 sm:mt-4 pt-2 sm:pt-3 border-t border-slate-200/60 dark:border-slate-800/60 flex items-center justify-between text-[10px] sm:text-xs">
+                <span className="text-slate-500 dark:text-slate-400 font-medium truncate max-w-[140px] hidden sm:inline">
                   {card.subtitle}
                 </span>
-                <span className="font-semibold px-2 py-0.5 rounded-md bg-white/80 dark:bg-slate-800/80 shadow-xs text-slate-700 dark:text-slate-300">
+                <span className="font-bold px-1.5 py-0.5 rounded bg-white/80 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 text-[10px] sm:text-xs">
                   {card.badge}
                 </span>
               </div>

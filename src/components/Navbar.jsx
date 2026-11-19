@@ -9,7 +9,8 @@ import {
   ChevronDown, 
   Plus, 
   Layers,
-  Sparkles
+  Sparkles,
+  FileText
 } from 'lucide-react';
 import { Button } from './UI/Button';
 import { Badge } from './UI/Badge';
@@ -21,6 +22,7 @@ export const Navbar = ({
   onOpenNewEvent,
   onOpenEventsList,
   onOpenSupabaseConfig,
+  onOpenReport,
   isCloudConnected,
   isDarkMode,
   onToggleDarkMode,
@@ -85,6 +87,18 @@ export const Navbar = ({
               </>
             )}
           </button>
+
+          {/* PDF Report Quick Button */}
+          {onOpenReport && (
+            <button
+              onClick={onOpenReport}
+              title="Download PDF Financial Report"
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-semibold text-indigo-600 dark:text-indigo-400 bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950/60 dark:hover:bg-indigo-900/60 border border-indigo-200 dark:border-indigo-800 transition-colors"
+            >
+              <FileText className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">PDF Report</span>
+            </button>
+          )}
 
           {/* Reset Demo Data Button */}
           <button

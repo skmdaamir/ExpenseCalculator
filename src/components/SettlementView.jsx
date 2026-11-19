@@ -11,7 +11,8 @@ import {
   Wallet, 
   HelpCircle,
   ExternalLink,
-  MessageSquare
+  MessageSquare,
+  FileText
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { Card, CardHeader, CardContent } from './UI/Card';
@@ -23,7 +24,8 @@ export const SettlementView = ({
   event,
   participants = [],
   finances,
-  currency = 'INR'
+  currency = 'INR',
+  onOpenReport
 }) => {
   const {
     participantsSummary = [],
@@ -117,11 +119,23 @@ export const SettlementView = ({
           </div>
 
           <div className="flex items-center gap-2">
+            {onOpenReport && (
+              <Button
+                size="sm"
+                variant="outline"
+                icon={FileText}
+                onClick={onOpenReport}
+                className="text-xs"
+              >
+                PDF Report
+              </Button>
+            )}
             <Button
               size="sm"
               variant="outline"
               icon={copiedSummary ? Check : Share2}
               onClick={handleCopyShareSummary}
+              className="text-xs"
             >
               {copiedSummary ? 'Summary Copied!' : 'Copy for WhatsApp'}
             </Button>

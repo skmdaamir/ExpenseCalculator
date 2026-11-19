@@ -34,3 +34,57 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Print & PDF styling */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+
+  /* Hide UI chrome, navigation, headers, footers, action buttons */
+  header, 
+  nav, 
+  footer, 
+  .no-print,
+  button,
+  .fixed.bottom-20,
+  .fixed.bottom-0 {
+    display: none !important;
+  }
+
+  /* Ensure modal backdrop and scroll containers expand for printing */
+  .fixed.inset-0 {
+    position: static !important;
+    background: transparent !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* Remove max-height scrolling on modal body during print */
+  .max-h-\[80vh\] {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  #printable-report {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  table {
+    page-break-inside: auto;
+  }
+
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+}

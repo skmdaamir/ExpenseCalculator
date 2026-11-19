@@ -30,7 +30,7 @@ export const Modal = ({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -47,16 +47,16 @@ export const Modal = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-            className={`relative w-full ${maxWidth} bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden my-auto z-10`}
+            className={`relative w-full ${maxWidth} bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden my-auto z-10`}
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-slate-100 dark:border-slate-800/80">
+            <div className="flex items-center justify-between p-4 sm:p-6 border-b border-slate-100 dark:border-slate-800/80">
               <div>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
+                <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white tracking-tight">
                   {title}
                 </h3>
                 {subtitle && (
-                  <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
                     {subtitle}
                   </p>
                 )}
@@ -65,7 +65,7 @@ export const Modal = ({
                 <button
                   type="button"
                   onClick={onClose}
-                  className="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors"
+                  className="p-1.5 sm:p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -73,7 +73,7 @@ export const Modal = ({
             </div>
 
             {/* Body */}
-            <div className="p-6 max-h-[80vh] overflow-y-auto">
+            <div className="p-4 sm:p-6 max-h-[82vh] overflow-y-auto">
               {children}
             </div>
           </motion.div>
